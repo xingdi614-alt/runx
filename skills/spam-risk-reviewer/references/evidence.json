@@ -1,0 +1,44 @@
+{
+  "schema": "frantic.evidence.v1",
+  "package": "spam-risk-reviewer",
+  "version": "0.1.0",
+  "runx_cli_version": "runx-cli 0.6.13",
+  "commands": {
+    "harness": "runx harness skills/spam-risk-reviewer --json",
+    "dogfood": "runx skill skills/spam-risk-reviewer --json --input-json campaign_draft=... --input-json list_metadata=... --input-json sender_auth_posture=...",
+    "verify": "runx verify --receipt sha256:96133678a23eb309486cf87fbcd86790ae0a909870706617d67941636fd1cd2f.json --json"
+  },
+  "dogfood": {
+    "package": "spam-risk-reviewer@0.1.0",
+    "input": "high-risk-incomplete-auth-poor-list",
+    "receipt_ref": "runx:receipt:sha256:96133678a23eb309486cf87fbcd86790ae0a909870706617d67941636fd1cd2f",
+    "verify_verdict": "valid",
+    "harness_cases": [
+      {
+        "name": "low-risk-verified-sender",
+        "status": "sealed"
+      },
+      {
+        "name": "high-risk-incomplete-auth-poor-list",
+        "status": "sealed"
+      }
+    ]
+  },
+  "observations": [
+    "runx --version output: runx-cli 0.6.13",
+    "low-risk-verified-sender: SPF, DKIM, and DMARC pass; bounce_rate 0.004, complaint_rate 0.0002, freshness_days 18, warm_up_days 45; verdict clears preflight.",
+    "high-risk-incomplete-auth-poor-list: DKIM does not pass; bounce_rate 0.12, complaint_rate 0.004, freshness_days 220, warm_up_days 3; verdict holds and routes to human approval.",
+    "typed inputs are campaign_draft{from, subject, content_digest}, list_metadata{size, bounce_rate, complaint_rate, freshness}, and sender_auth_posture{spf_pass, dkim_pass, dmarc_pass, warm_up_days}.",
+    "typed output includes send_risk_verdict{risk_level, preflight_clear, blockers, evidence_summary}, authentication_signals, list_hygiene_metrics, needs_human, send_as_dispatch, and authority_boundary.",
+    "authority_boundary confirms the skill emits no runx.operational_proposal.v1, mints no authority, reads no domain state, and sends no messages.",
+    "send_as_dispatch states that a separate governed send-as run owns the public_send effect and cannot satisfy preflight when blockers are present."
+  ],
+  "artifacts": {
+    "skill_md": "skills/spam-risk-reviewer/SKILL.md",
+    "x_yaml": "skills/spam-risk-reviewer/X.yaml",
+    "harness_json": "skills/spam-risk-reviewer/references/harness.json",
+    "dogfood_run_json": "skills/spam-risk-reviewer/references/dogfood-run.json",
+    "verification_json": "skills/spam-risk-reviewer/references/verification.json",
+    "report": "skills/spam-risk-reviewer/references/report.md"
+  }
+}

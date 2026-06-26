@@ -1,0 +1,31 @@
+name: high-risk-incomplete-auth-poor-list
+kind: skill
+target: ..
+runner: review
+inputs:
+  campaign_draft:
+    from: promo@example.test
+    subject: ACT NOW guaranteed free money offer
+    content_digest: sha256:66f9c6f0d7015fd0ce45d2954e6ad732a27e74be8320b4f5d5d450a4a76031d2
+    content_summary: Promotional blast with pressure language.
+  list_metadata:
+    size: 50000
+    bounce_rate: 0.12
+    complaint_rate: 0.004
+    freshness_days: 220
+  sender_auth_posture:
+    spf_pass: true
+    dkim_pass: false
+    dmarc_pass: true
+    warm_up_days: 3
+expect:
+  status: sealed
+  receipt:
+    schema: runx.receipt.v1
+    state: sealed
+    disposition: closed
+    reason_code: process_closed
+metadata:
+  public_skill: spam-risk-reviewer
+  source_case: high-risk-incomplete-auth-poor-list
+  source: skills-fixture

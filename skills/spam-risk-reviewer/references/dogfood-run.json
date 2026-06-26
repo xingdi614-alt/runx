@@ -1,0 +1,372 @@
+{
+  "closure": {
+    "closed_at": "2026-06-26T03:57:30.897Z",
+    "disposition": "closed",
+    "reason_code": "process_closed",
+    "summary": "cli-tool review completed"
+  },
+  "execution": {
+    "exit_code": 0,
+    "skill_claim": {
+      "authentication_signals": {
+        "dkim_pass": false,
+        "dmarc_pass": true,
+        "spf_pass": true,
+        "warm_up_days": 3
+      },
+      "authority_boundary": {
+        "emits_operational_proposal": false,
+        "mints_authority": false,
+        "reads_domain_state": false,
+        "sends_messages": false
+      },
+      "content_risk_flags": [
+        "spammy-claim-or-pressure-language"
+      ],
+      "list_hygiene_metrics": {
+        "bounce_rate": 0.12,
+        "complaint_rate": 0.004,
+        "freshness_days": 220,
+        "size": 50000
+      },
+      "needs_human": {
+        "lane": "human_approval",
+        "reasons": [
+          "DKIM does not pass",
+          "sender warm-up 3d is below policy minimum 14d",
+          "bounce_rate 0.12 exceeds policy maximum 0.02",
+          "complaint_rate 0.004 exceeds policy maximum 0.001",
+          "list freshness 220d exceeds policy maximum 90d"
+        ],
+        "required": true
+      },
+      "policy_thresholds": {
+        "max_bounce_rate": 0.02,
+        "max_complaint_rate": 0.001,
+        "max_freshness_days": 90,
+        "min_warm_up_days": 14
+      },
+      "send_as_dispatch": {
+        "blockers": [
+          "DKIM does not pass",
+          "sender warm-up 3d is below policy minimum 14d",
+          "bounce_rate 0.12 exceeds policy maximum 0.02",
+          "complaint_rate 0.004 exceeds policy maximum 0.001",
+          "list freshness 220d exceeds policy maximum 90d"
+        ],
+        "dispatch_by_naming": true,
+        "live_delivery_authority": "separate_governed_send_as_run",
+        "note": "A separate governed send-as run cannot satisfy preflight with this verdict and must route to human approval.",
+        "preflight_clear": false,
+        "preflight_required": true,
+        "public_send_effect_owner": "send-as",
+        "target_skill": "send-as"
+      },
+      "send_risk_verdict": {
+        "blockers": [
+          "DKIM does not pass",
+          "sender warm-up 3d is below policy minimum 14d",
+          "bounce_rate 0.12 exceeds policy maximum 0.02",
+          "complaint_rate 0.004 exceeds policy maximum 0.001",
+          "list freshness 220d exceeds policy maximum 90d"
+        ],
+        "evidence_summary": [
+          "auth spf=true dkim=false dmarc=true",
+          "warm_up_days=3",
+          "list size=50000 bounce_rate=0.12 complaint_rate=0.004 freshness_days=220",
+          "content_digest=sha256:66f9c6f0d7015fd0ce45d2954e6ad732a27e74be8320b4f5d5d450a4a76031d2"
+        ],
+        "preflight_clear": false,
+        "risk_level": "hold"
+      }
+    },
+    "stderr": "",
+    "stdout": "{\n  \"send_risk_verdict\": {\n    \"risk_level\": \"hold\",\n    \"preflight_clear\": false,\n    \"blockers\": [\n      \"DKIM does not pass\",\n      \"sender warm-up 3d is below policy minimum 14d\",\n      \"bounce_rate 0.12 exceeds policy maximum 0.02\",\n      \"complaint_rate 0.004 exceeds policy maximum 0.001\",\n      \"list freshness 220d exceeds policy maximum 90d\"\n    ],\n    \"evidence_summary\": [\n      \"auth spf=true dkim=false dmarc=true\",\n      \"warm_up_days=3\",\n      \"list size=50000 bounce_rate=0.12 complaint_rate=0.004 freshness_days=220\",\n      \"content_digest=sha256:66f9c6f0d7015fd0ce45d2954e6ad732a27e74be8320b4f5d5d450a4a76031d2\"\n    ]\n  },\n  \"authentication_signals\": {\n    \"spf_pass\": true,\n    \"dkim_pass\": false,\n    \"dmarc_pass\": true,\n    \"warm_up_days\": 3\n  },\n  \"list_hygiene_metrics\": {\n    \"size\": 50000,\n    \"bounce_rate\": 0.12,\n    \"complaint_rate\": 0.004,\n    \"freshness_days\": 220\n  },\n  \"policy_thresholds\": {\n    \"max_bounce_rate\": 0.02,\n    \"max_complaint_rate\": 0.001,\n    \"max_freshness_days\": 90,\n    \"min_warm_up_days\": 14\n  },\n  \"content_risk_flags\": [\n    \"spammy-claim-or-pressure-language\"\n  ],\n  \"needs_human\": {\n    \"required\": true,\n    \"lane\": \"human_approval\",\n    \"reasons\": [\n      \"DKIM does not pass\",\n      \"sender warm-up 3d is below policy minimum 14d\",\n      \"bounce_rate 0.12 exceeds policy maximum 0.02\",\n      \"complaint_rate 0.004 exceeds policy maximum 0.001\",\n      \"list freshness 220d exceeds policy maximum 90d\"\n    ]\n  },\n  \"send_as_dispatch\": {\n    \"target_skill\": \"send-as\",\n    \"dispatch_by_naming\": true,\n    \"preflight_required\": true,\n    \"preflight_clear\": false,\n    \"blockers\": [\n      \"DKIM does not pass\",\n      \"sender warm-up 3d is below policy minimum 14d\",\n      \"bounce_rate 0.12 exceeds policy maximum 0.02\",\n      \"complaint_rate 0.004 exceeds policy maximum 0.001\",\n      \"list freshness 220d exceeds policy maximum 90d\"\n    ],\n    \"public_send_effect_owner\": \"send-as\",\n    \"live_delivery_authority\": \"separate_governed_send_as_run\",\n    \"note\": \"A separate governed send-as run cannot satisfy preflight with this verdict and must route to human approval.\"\n  },\n  \"authority_boundary\": {\n    \"emits_operational_proposal\": false,\n    \"mints_authority\": false,\n    \"reads_domain_state\": false,\n    \"sends_messages\": false\n  }\n}\n",
+    "structured_output": {
+      "authentication_signals": {
+        "dkim_pass": false,
+        "dmarc_pass": true,
+        "spf_pass": true,
+        "warm_up_days": 3
+      },
+      "authority_boundary": {
+        "emits_operational_proposal": false,
+        "mints_authority": false,
+        "reads_domain_state": false,
+        "sends_messages": false
+      },
+      "content_risk_flags": [
+        "spammy-claim-or-pressure-language"
+      ],
+      "list_hygiene_metrics": {
+        "bounce_rate": 0.12,
+        "complaint_rate": 0.004,
+        "freshness_days": 220,
+        "size": 50000
+      },
+      "needs_human": {
+        "lane": "human_approval",
+        "reasons": [
+          "DKIM does not pass",
+          "sender warm-up 3d is below policy minimum 14d",
+          "bounce_rate 0.12 exceeds policy maximum 0.02",
+          "complaint_rate 0.004 exceeds policy maximum 0.001",
+          "list freshness 220d exceeds policy maximum 90d"
+        ],
+        "required": true
+      },
+      "policy_thresholds": {
+        "max_bounce_rate": 0.02,
+        "max_complaint_rate": 0.001,
+        "max_freshness_days": 90,
+        "min_warm_up_days": 14
+      },
+      "send_as_dispatch": {
+        "blockers": [
+          "DKIM does not pass",
+          "sender warm-up 3d is below policy minimum 14d",
+          "bounce_rate 0.12 exceeds policy maximum 0.02",
+          "complaint_rate 0.004 exceeds policy maximum 0.001",
+          "list freshness 220d exceeds policy maximum 90d"
+        ],
+        "dispatch_by_naming": true,
+        "live_delivery_authority": "separate_governed_send_as_run",
+        "note": "A separate governed send-as run cannot satisfy preflight with this verdict and must route to human approval.",
+        "preflight_clear": false,
+        "preflight_required": true,
+        "public_send_effect_owner": "send-as",
+        "target_skill": "send-as"
+      },
+      "send_risk_verdict": {
+        "blockers": [
+          "DKIM does not pass",
+          "sender warm-up 3d is below policy minimum 14d",
+          "bounce_rate 0.12 exceeds policy maximum 0.02",
+          "complaint_rate 0.004 exceeds policy maximum 0.001",
+          "list freshness 220d exceeds policy maximum 90d"
+        ],
+        "evidence_summary": [
+          "auth spf=true dkim=false dmarc=true",
+          "warm_up_days=3",
+          "list size=50000 bounce_rate=0.12 complaint_rate=0.004 freshness_days=220",
+          "content_digest=sha256:66f9c6f0d7015fd0ce45d2954e6ad732a27e74be8320b4f5d5d450a4a76031d2"
+        ],
+        "preflight_clear": false,
+        "risk_level": "hold"
+      }
+    }
+  },
+  "payload": {
+    "authentication_signals": {
+      "dkim_pass": false,
+      "dmarc_pass": true,
+      "spf_pass": true,
+      "warm_up_days": 3
+    },
+    "authority_boundary": {
+      "emits_operational_proposal": false,
+      "mints_authority": false,
+      "reads_domain_state": false,
+      "sends_messages": false
+    },
+    "content_risk_flags": [
+      "spammy-claim-or-pressure-language"
+    ],
+    "list_hygiene_metrics": {
+      "bounce_rate": 0.12,
+      "complaint_rate": 0.004,
+      "freshness_days": 220,
+      "size": 50000
+    },
+    "needs_human": {
+      "lane": "human_approval",
+      "reasons": [
+        "DKIM does not pass",
+        "sender warm-up 3d is below policy minimum 14d",
+        "bounce_rate 0.12 exceeds policy maximum 0.02",
+        "complaint_rate 0.004 exceeds policy maximum 0.001",
+        "list freshness 220d exceeds policy maximum 90d"
+      ],
+      "required": true
+    },
+    "policy_thresholds": {
+      "max_bounce_rate": 0.02,
+      "max_complaint_rate": 0.001,
+      "max_freshness_days": 90,
+      "min_warm_up_days": 14
+    },
+    "send_as_dispatch": {
+      "blockers": [
+        "DKIM does not pass",
+        "sender warm-up 3d is below policy minimum 14d",
+        "bounce_rate 0.12 exceeds policy maximum 0.02",
+        "complaint_rate 0.004 exceeds policy maximum 0.001",
+        "list freshness 220d exceeds policy maximum 90d"
+      ],
+      "dispatch_by_naming": true,
+      "live_delivery_authority": "separate_governed_send_as_run",
+      "note": "A separate governed send-as run cannot satisfy preflight with this verdict and must route to human approval.",
+      "preflight_clear": false,
+      "preflight_required": true,
+      "public_send_effect_owner": "send-as",
+      "target_skill": "send-as"
+    },
+    "send_risk_verdict": {
+      "blockers": [
+        "DKIM does not pass",
+        "sender warm-up 3d is below policy minimum 14d",
+        "bounce_rate 0.12 exceeds policy maximum 0.02",
+        "complaint_rate 0.004 exceeds policy maximum 0.001",
+        "list freshness 220d exceeds policy maximum 90d"
+      ],
+      "evidence_summary": [
+        "auth spf=true dkim=false dmarc=true",
+        "warm_up_days=3",
+        "list size=50000 bounce_rate=0.12 complaint_rate=0.004 freshness_days=220",
+        "content_digest=sha256:66f9c6f0d7015fd0ce45d2954e6ad732a27e74be8320b4f5d5d450a4a76031d2"
+      ],
+      "preflight_clear": false,
+      "risk_level": "hold"
+    }
+  },
+  "receipt": {
+    "acts": [
+      {
+        "artifact_refs": [],
+        "closure": {
+          "closed_at": "2026-06-26T03:57:30.897Z",
+          "disposition": "closed",
+          "reason_code": "process_exit",
+          "summary": "cli-tool exited successfully"
+        },
+        "criterion_bindings": [
+          {
+            "criterion_id": "process_exit",
+            "evidence_refs": [],
+            "status": "verified",
+            "summary": "cli-tool exited successfully",
+            "verification_refs": []
+          }
+        ],
+        "form": "observation",
+        "id": "act_review",
+        "intent": {
+          "constraints": [],
+          "derived_from": [],
+          "legitimacy": "Runtime graph execution was admitted by the local harness",
+          "purpose": "Run graph step review",
+          "success_criteria": [
+            {
+              "criterion_id": "process_exit",
+              "required": true,
+              "statement": "cli-tool exits successfully"
+            }
+          ]
+        },
+        "source_refs": [],
+        "summary": "Executed graph step review",
+        "target_refs": []
+      }
+    ],
+    "authority": {
+      "actor_ref": {
+        "type": "principal",
+        "uri": "runx:principal:local_runtime"
+      },
+      "attenuation": {
+        "parent_authority_ref": null,
+        "subset_proof": null
+      },
+      "authority_proof_refs": [],
+      "enforcement": {
+        "profile_hash": "sha256:runtime-skeleton-enforcement",
+        "redaction_refs": [],
+        "setup_refs": [],
+        "teardown_refs": []
+      },
+      "grant_refs": [],
+      "scope_refs": [],
+      "terms": []
+    },
+    "canonicalization": "runx.receipt.c14n.v1",
+    "created_at": "2026-06-26T03:57:30.897Z",
+    "decisions": [
+      {
+        "artifact_refs": [],
+        "choice": "open",
+        "closure": null,
+        "decision_id": "dec_review",
+        "inputs": {
+          "opportunity_refs": [],
+          "selection_ref": null,
+          "signal_refs": [],
+          "target_ref": null
+        },
+        "justification": {
+          "evidence_refs": [],
+          "summary": "runtime graph planner selected this node"
+        },
+        "proposed_intent": {
+          "constraints": [],
+          "derived_from": [],
+          "legitimacy": "Local graph execution requested this node",
+          "purpose": "Open runtime node review",
+          "success_criteria": []
+        },
+        "selected_act_id": "act_review",
+        "selected_harness_ref": null
+      }
+    ],
+    "digest": "sha256:5f6b50c3ce4d29b2d36e727142bc12161dd61acbbdec5b6b8d94c9579421e769",
+    "id": "sha256:96133678a23eb309486cf87fbcd86790ae0a909870706617d67941636fd1cd2f",
+    "idempotency": {
+      "content_hash": "sha256:run_review_6993216727a1-review-content",
+      "intent_key": "sha256:run_review_6993216727a1-review-intent",
+      "trigger_fingerprint": "sha256:run_review_6993216727a1-review-trigger"
+    },
+    "issuer": {
+      "kid": "local-spam-risk-20260626115234",
+      "public_key_sha256": "sha256:cdbb05136f3d180641b5c3183e0f0a391d1eed924097a4c70807747e7216706a",
+      "type": "hosted"
+    },
+    "lineage": {
+      "children": [],
+      "sync": []
+    },
+    "schema": "runx.receipt.v1",
+    "seal": {
+      "closed_at": "2026-06-26T03:57:30.897Z",
+      "criteria": [
+        {
+          "criterion_id": "process_exit",
+          "evidence_refs": [],
+          "status": "verified",
+          "summary": "cli-tool exited successfully",
+          "verification_refs": []
+        }
+      ],
+      "disposition": "closed",
+      "last_observed_at": "2026-06-26T03:57:30.897Z",
+      "reason_code": "process_closed",
+      "summary": "cli-tool review completed"
+    },
+    "signals": [],
+    "signature": {
+      "alg": "Ed25519",
+      "value": "base64:fwjVQ8HM6hk3NXBNf8OMTKdtZ6DQKxNJd3OYRZSN_QNJxFHd-fKYqoKsWOGkYhMS2VUfpOmsiGy8xchNYVOJBQ"
+    },
+    "subject": {
+      "commitments": [],
+      "kind": "skill",
+      "ref": {
+        "type": "harness",
+        "uri": "hrn_run_review_6993216727a1_review"
+      }
+    }
+  },
+  "receipt_id": "sha256:96133678a23eb309486cf87fbcd86790ae0a909870706617d67941636fd1cd2f",
+  "run_id": "run_review_6993216727a1",
+  "schema": "runx.skill_run.v1",
+  "skill_name": "spam-risk-reviewer",
+  "status": "sealed"
+}
